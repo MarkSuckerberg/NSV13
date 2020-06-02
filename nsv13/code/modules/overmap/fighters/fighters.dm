@@ -829,13 +829,14 @@ How to make fuel:
 		if("T" || "t")
 			relinquish_target_lock()
 
-/obj/structure/overmap/fighter/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
+/obj/structure/overmap/fighter/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
 	if(user != pilot && maint_state != MS_OPEN)
 		return
 	if(user != pilot && maint_state == MS_OPEN)
 		ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 		if(!ui)
-			ui = new(user, src, ui_key, "fighter_maintenance", name, 560, 600, master_ui, state)
+			ui = new(user, src, ui_key, "FighterMaintenance", name, 560, 600, master_ui, state)
 			ui.open()
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
